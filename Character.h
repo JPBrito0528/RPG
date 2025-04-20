@@ -25,6 +25,6 @@ private:
     int frame{};
     int maxFrames{6};
     float updateTime{1.f / 12.f};
-    float speed{40.f};
+    float speed{4.f};
     float Scale{4.f};
 };
