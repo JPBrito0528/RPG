@@ -1,16 +1,21 @@
 #include "Character.h"
 #include "raymath.h"
 
-void Character::setScreenPos(int winWidth, int winHeight)
+Character::Character(int winWidth,int winHeight)
 {
-    screenPos = {(float)winWidth / 2.0f - 4.0f * (0.5f * (float)texture.width / 6.0f),
-                 (float)winHeight / 2.0f - 4.0f * (0.5f * (float)texture.height)
-    };
-}
+    screenPos = {static_cast<float>(winWidth) / 2.0f - Scale * (0.5f * static_cast<float>(texture.width) / blks),
+                 static_cast<float>(winHeight) / 2.0f - Scale * (0.5f * static_cast<float>(texture.height))};
+};
 
+
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
+}
 
 void Character::tick(float deltaTime, int winWidth, int winHeight)
 {
+    worldPosLastFrame = worldPos;
     Vector2 direction{};
     if (IsKeyDown(KEY_A))
         direction.x -= 1;
@@ -74,6 +79,6 @@ void Character::tick(float deltaTime, int winWidth, int winHeight)
 
     // draw character
     Rectangle source{frame * (float)texture.width / blks, 0.0f, rightLeft * (float)texture.width / blks, (float)texture.height};
-    Rectangle dest{screenPos.x, screenPos.y, 4.0f * (float)texture.width / blks, 4.0f * (float)texture.height};
+    Rectangle dest{screenPos.x, screenPos.y, Scale * (float)texture.width / blks, Scale * (float)texture.height};
     DrawTexturePro(texture, source, dest, Vector2{}, 0.0f, WHITE);
 }
