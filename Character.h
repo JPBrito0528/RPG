@@ -3,9 +3,10 @@
 class Character
 {
 public:
+    Character(int winWidth,int winHeight);
     Vector2 getWorldPos() { return worldPos; }
-    void setScreenPos(int winWidth, int winHeight);
     void tick(float deltaTime, int winWidth, int winHeight);
+    void undoMovement();
 
 private:
     Texture2D texture{LoadTexture("nakedMan/SHEEFT/IDLE/idleFront.png")};
@@ -16,6 +17,7 @@ private:
     Texture2D walkDown{LoadTexture("nakedMan/SHEEFT/WALK/walkDown.png")};
     Vector2 screenPos{};
     Vector2 worldPos{};
+    Vector2 worldPosLastFrame{};
     int blks{};
     int i{};
     float rightLeft = 1.f;
@@ -23,5 +25,6 @@ private:
     int frame{};
     int maxFrames{6};
     float updateTime{1.f / 12.f};
-    float speed{4.f};
+    float speed{40.f};
+    float Scale{4.f};
 };
