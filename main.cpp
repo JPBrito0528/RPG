@@ -10,7 +10,7 @@ int main()
     const int windowHeight{384};
     InitWindow(windowWidth, windowHeight, "Stephen's Top Down");
 
-    Texture2D map = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
+    Texture2D map = LoadTexture("nature_tileset/natureMap.png");
     Vector2 mapPos{0.0, 0.0};
     const float mapScale{4.0f};
 
