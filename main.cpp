@@ -108,6 +108,7 @@ while (!WindowShouldClose())
     for (auto enemy : enemies) // Loop over the array by index
     {
         enemy->tick(GetFrameTime()); // Access the object using the pointer
+        
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             if (CheckCollisionRecs(enemy->getCollisionRec(), knight.getCollisionRec()))
